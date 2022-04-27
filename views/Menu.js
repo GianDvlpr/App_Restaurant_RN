@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 import React from 'react'
 
 const Menu = () => {
     return (
-        <View>
+        <>
             <Text>Menu</Text>
-        </View>
+        </>
     )
 }
 
