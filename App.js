@@ -10,7 +10,6 @@ import Menu from './views/Menu';
 import ProgresoPedido from './views/ProgresoPedido';
 import ResumenPedido from './views/ResumenPedido';
 import NuevaOrden from './views/NuevaOrden';
-import { NativeBaseProvider } from 'native-base';
 
 //Importar el state de context
 import FirebaseState from './context/firebase/firebaseState';
@@ -22,7 +21,6 @@ const Stack = createStackNavigator()
 const App = () => {
   return (
     <>
-      <NativeBaseProvider>
         <FirebaseState>
           <PedidosState>
             <NavigationContainer>
@@ -88,7 +86,6 @@ const App = () => {
             </NavigationContainer>
           </PedidosState>
         </FirebaseState>
-      </NativeBaseProvider>
     </>
   )
 }

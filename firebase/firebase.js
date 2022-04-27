@@ -10,6 +10,8 @@ class Firebase {
         }
 
         this.db = app.firestore()
+        app.firestore().settings({ experimentalForceLongPolling: true });
+        
     }
 }
 

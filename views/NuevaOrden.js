@@ -14,7 +14,7 @@ const NuevaOrden = () => {
             <View style={[globalStyles.contenido, styles.contenido]}>
                 <Button
                     style={globalStyles.boton}
-                    rounded='full'
+                    rounded={true}
                     onPress={() => navigation.navigate('Menu')}
                 >
                     <Text
@@ -32,5 +32,6 @@ const styles = StyleSheet.create({
     contenido: {
         flexDirection: 'column',
         justifyContent: 'center',
+        paddingLeft: 120
     }
 })
