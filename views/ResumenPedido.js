@@ -4,11 +4,12 @@ import { Container, Content, List, ListItem, Thumbnail, Text, Left, Body, Button
 import PedidosContext from '../context/pedidos/pedidosContext'
 import { useNavigation } from '@react-navigation/native'
 import globalStyles from '../styles/global'
+import firebase from '../firebase'
 
 const ResumenPedido = () => {
 
     //Context del pedido
-    const { pedido, total, mostrarResumen, eliminarProducto } = useContext(PedidosContext)
+    const { pedido, total, mostrarResumen, eliminarProducto, pedidoOrdenado } = useContext(PedidosContext)
     //Redireccionar
     const navigation = useNavigation()
 
@@ -30,8 +31,24 @@ const ResumenPedido = () => {
             [
                 {
                     text: 'Confirmar',
-                    onPress: () => {
-                        navigation.navigate("ProgresoPedido")
+                    onPress: async () => {
+                        //Creando objeto con la inf del pedido
+                        const pedidoOBJ = {
+                            tiempoEntrega: 0,
+                            completado: false,
+                            total: Number(total),
+                            orden: pedido,
+                            creado: Date.now()
+                        }
+                        //Escribir el pedido en firebase
+                        try {
+                            const pedido = await firebase.db.collection('ordenes').add(pedidoOBJ)
+                            pedidoOrdenado(pedido.id)
+                            //Redireccionar a progreso
+                            navigation.navigate("ProgresoPedido")
+                        } catch (error) {
+                            console.log(error)
+                        }
                     }
                 },
                 { text: 'Revisar', style: 'cancel' }

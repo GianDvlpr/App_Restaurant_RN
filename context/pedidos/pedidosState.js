@@ -3,7 +3,7 @@ import React, { useReducer } from 'react';
 import PedidosReducer from './pedidosReducer'
 import PedidosContext from './pedidosContext'
 
-import { SELECCIONAR_PRODUCTO, CONFIRMAR_ORDEN_PLATO, MOSTRAR_RESUMEN, ELIMINAR_PRODUCTO } from '../../types'
+import { SELECCIONAR_PRODUCTO, CONFIRMAR_ORDEN_PLATO, MOSTRAR_RESUMEN, ELIMINAR_PRODUCTO, PEDIDO_ORDENADO } from '../../types'
 
 const PedidosState = props => {
 
@@ -11,7 +11,8 @@ const PedidosState = props => {
     const initialState = {
         pedido: [],
         plato: null,
-        total: 0
+        total: 0,
+        idpedido: ''
     }
 
     //useReducer con dispatch para ejecutar las funciones
@@ -49,16 +50,25 @@ const PedidosState = props => {
         })
     }
 
+    const pedidoOrdenado = (id) => {
+        dispatch({
+            type: PEDIDO_ORDENADO,
+            payload: id
+        })
+    }
+
     return (
         <PedidosContext.Provider
             value={{
                 pedido: state.pedido,
                 plato: state.plato,
                 total: state.total,
+                idpedido: state.idpedido,
                 seleccionarPlato,
                 guardarPedido,
                 mostrarResumen,
-                eliminarProducto
+                eliminarProducto,
+                pedidoOrdenado
             }}
         >
             {props.children}
