@@ -114,6 +114,7 @@ const ResumenPedido = () => {
                 <Text style={globalStyles.cantidad}>Total a Pagar: S/{total}.00</Text>
                 <Button
                     dark
+                    block
                     style={[styles.boton]}
                     onPress={() => navigation.navigate('Menu')}
                 >
@@ -138,8 +139,7 @@ export default ResumenPedido
 
 const styles = StyleSheet.create({
     boton: {
-        marginLeft: 30,
-        marginTop: 35,
-        paddingHorizontal: 100
+        marginTop: 40
+        
     }
 })
